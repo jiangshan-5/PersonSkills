@@ -46,6 +46,17 @@ PersonSkills/
 *   **[image-to-code-skill](./skills/development/image-to-code-skill/SKILL.md)**: 根据 UI 截图生成精美、无瑕疵响应式代码的执行原则。
 *   **[react-patterns](./skills/development/react-patterns/SKILL.md)**: 现代 React 开发模式规范，包含 Hooks 组件解耦、数据流向及状态机定义。
 *   **[nextjs-best-practices](./skills/development/nextjs-best-practices/SKILL.md)**: Next.js App Router 的最佳实践（包括 Server Components 数据拉取、路由缓存及性能优化）。
+*   **Official Flutter 官方开发技能包 (10 个技能)**:
+    *   **[flutter-apply-architecture-best-practices](./skills/development/flutter-apply-architecture-best-practices/SKILL.md)**: 引入 Flutter 架构与代码分层最佳实践。
+    *   **[flutter-build-responsive-layout](./skills/development/flutter-build-responsive-layout/SKILL.md)**: 构建适配手机与平板的多端响应式布局。
+    *   **[flutter-add-integration-test](./skills/development/flutter-add-integration-test/SKILL.md)**: 应用 Flutter Driver 和自动化集成测试流程。
+    *   **[flutter-add-widget-test](./skills/development/flutter-add-widget-test/SKILL.md)** / **[flutter-add-widget-preview](./skills/development/flutter-add-widget-preview/SKILL.md)**: 开发阶段的组件功能单元测试与 Widget 实时预览。
+    *   *涵盖了 localization 本地化、declarative-routing 声明式路由、json-serialization 序列化、http-package 封装等全部 Flutter 团队官方标准。*
+*   **Official Dart 官方最佳实践技能包 (9 个技能)**:
+    *   **[dart-run-static-analysis](./skills/development/dart-run-static-analysis/SKILL.md)**: 运用官方 linter 进行静态分析，规避隐式类型和空安全错误。
+    *   **[dart-use-pattern-matching](./skills/development/dart-use-pattern-matching/SKILL.md)**: 规范使用 Dart 3.x 模式匹配、解构与 Sealed 类特性。
+    *   **[dart-add-unit-test](./skills/development/dart-add-unit-test/SKILL.md)** / **[dart-generate-test-mocks](./skills/development/dart-generate-test-mocks/SKILL.md)**: 单元测试用例设计与 build_runner Mock 伪造标准。
+    *   *涵盖了 cli-app 命令行开发、coverage 覆盖率、checks 断言包迁移、package-conflicts 包冲突解决等官方规范。*
 
 ---
 
