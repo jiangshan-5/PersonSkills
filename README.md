@@ -6,85 +6,72 @@
 
 ## 📂 技能库目录架构
 
-项目根目录下的 `skills/` 文件夹根据应用场景对所有技能进行了归类整理：
+项目根目录下的 `skills/` 文件夹已被整理为扁平的双层结构，从而将自己创建的核心技能同他人仓库拉取的公开技能进行清晰分离：
 
 ```text
 PersonSkills/
 ├── README.md               # 技能库总览与使用说明
-└── skills/                 # 技能文件夹
-    ├── ui-design/          # 界面设计与动效类 (UI & Motion)
-    ├── testing-qa/         # 测试与质量保障类 (Testing & QA)
-    └── development/        # 核心开发最佳实践类 (Development)
+└── skills/                 # 技能文件夹 (扁平化管理)
+    ├── my-skills/          # 👤 个人自建核心技能 (Custom & Personal)
+    │   ├── app-update-management/
+    │   ├── legado-book-source-creation/
+    │   └── novel-reader-integration/
+    └── third-party/        # 📦 第三方及官方开源技能 (Third-party & Open source)
+        ├── taste-skill/
+        ├── react-patterns/
+        ├── flutter-use-http-package/
+        └── ... (33个公开的各类技术栈最佳实践)
 ```
 
 ---
 
-## 🛠 技能清单与说明
+## 👤 1. 个人自建核心技能 (`skills/my-skills/`)
 
-### 1. 🎨 界面设计与视觉动效 (`skills/ui-design/`)
-这类技能专门用于控制前端界面的审美、排版、留白、色彩和动效，彻底告别 AI 默认的“黑底紫色渐变”等千篇一律的模板风格。
+这是您自己规划及从实际项目经验中提炼沉淀的核心业务场景技能：
 
-*   **[taste-skill](./skills/ui-design/taste-skill/SKILL.md)**: 拒绝平庸前端页面（Anti-Slop）的视觉开发指南，提供全面的留白、排版以及用户心理契合原则。
-*   **[brutalist-skill](./skills/ui-design/brutalist-skill/SKILL.md)**: 粗犷主义设计规范，强烈的视觉冲击力和独特的排版张力。
-*   **[minimalist-skill](./skills/ui-design/minimalist-skill/SKILL.md)**: 极简主义设计指南，控制轻量级排版、Restrained 动效和极致的空间感。
-*   **[gpt-tasteskill](./skills/ui-design/gpt-tasteskill/SKILL.md)**: 殿堂级 AIDA 布局、无缝 Bento 网格设计以及 GSAP（ScrollTrigger）高级滚动动效开发指南。
-*   **[soft-skill](./skills/ui-design/soft-skill/SKILL.md)**: 柔和色彩、毛玻璃拟态（Glassmorphism）与天然温和的渐变搭配指引。
-*   **[redesign-skill](./skills/ui-design/redesign-skill/SKILL.md)**: 针对既有项目的重构设计规范，指导如何在继承既有品牌资产的同时进行现代化重构。
-*   **[stitch-skill](./skills/ui-design/stitch-skill/SKILL.md)**: Stitch 多组件协作开发标准，管理通用卡片、大块分区与流式布局。
-*   **[brandkit](./skills/ui-design/brandkit/SKILL.md)**: 基础设计令牌（Design Tokens）与核心品牌色盘规范。
+*   **[novel-reader-integration](./skills/my-skills/novel-reader-integration/SKILL.md)**: 小说阅读核心技术整合。包含客户端自适应文本分页算法、文字转语音（TTS）播放进度同步、白噪音混音混合背景播放设计以及双层缓存（内存预取 + 离线本地 SQLite）策略。
+*   **[legado-book-source-creation](./skills/my-skills/legado-book-source-creation/SKILL.md)**: Legado 书源规则设计与云端同步标准。包括 CSS 选择器调试避坑、MD5 散列主键生成公式、本地 SQLite 与云端 PostgreSQL (SSH + Docker 容器) 注入机制。
+*   **[app-update-management](./skills/my-skills/app-update-management/SKILL.md)**: 移动应用发布与更新升级通知机制。规避客户端与服务端版本号冲突、包管理器防缓存配置及完整性校验。
 
-### 2. 🧪 测试与质量保障 (`skills/testing-qa/`)
-这类技能确保 Agent 在写完代码后，能够运用业界顶尖的工具链自动运行测试，发现并修复潜在的 Bug。
+---
 
-*   **[webapp-testing](./skills/testing-qa/webapp-testing/SKILL.md)**: 针对 Web 应用的高保真自动化端到端（E2E）测试编写标准。
-*   **[playwright-skill](./skills/testing-qa/playwright-skill/SKILL.md)**: Playwright 脚本生成与多平台浏览器交互调试专家级规范。
-*   **[android_ui_verification](./skills/testing-qa/android_ui_verification/SKILL.md)**: 依托 Android 模拟器与 ADB 的端到端 UI 自动化测试运行及截屏比对指引。
+## 📦 2. 第三方及官方开源技能 (`skills/third-party/`)
 
-### 3. 💻 核心开发与最佳实践 (`skills/development/`)
-这类技能归纳了现代流行框架的标准写法与代码组织原则，避免 Agent 写出过时的 API 调用或凌乱的文件依赖。
+拉取自社区或官方团队的标准技术指南（由 UI/动效类、测试类、语言基础框架类等整合扁平化归入此目录）：
 
-*   **[image-to-code-skill](./skills/development/image-to-code-skill/SKILL.md)**: 根据 UI 截图生成精美、无瑕疵响应式代码的执行原则。
-*   **[react-patterns](./skills/development/react-patterns/SKILL.md)**: 现代 React 开发模式规范，包含 Hooks 组件解耦、数据流向及状态机定义。
-*   **[nextjs-best-practices](./skills/development/nextjs-best-practices/SKILL.md)**: Next.js App Router 的最佳实践（包括 Server Components 数据拉取、路由缓存及性能优化）。
-*   **Official Flutter 官方开发技能包 (10 个技能)**:
-    *   **[flutter-apply-architecture-best-practices](./skills/development/flutter-apply-architecture-best-practices/SKILL.md)**: 引入 Flutter 架构与代码分层最佳实践。
-    *   **[flutter-build-responsive-layout](./skills/development/flutter-build-responsive-layout/SKILL.md)**: 构建适配手机与平板的多端响应式布局。
-    *   **[flutter-add-integration-test](./skills/development/flutter-add-integration-test/SKILL.md)**: 应用 Flutter Driver 和自动化集成测试流程。
-    *   **[flutter-add-widget-test](./skills/development/flutter-add-widget-test/SKILL.md)** / **[flutter-add-widget-preview](./skills/development/flutter-add-widget-preview/SKILL.md)**: 开发阶段的组件功能单元测试与 Widget 实时预览。
-    *   *涵盖了 localization 本地化、declarative-routing 声明式路由、json-serialization 序列化、http-package 封装等全部 Flutter 团队官方标准。*
-*   **Official Dart 官方最佳实践技能包 (9 个技能)**:
-    *   **[dart-run-static-analysis](./skills/development/dart-run-static-analysis/SKILL.md)**: 运用官方 linter 进行静态分析，规避隐式类型和空安全错误。
-    *   **[dart-use-pattern-matching](./skills/development/dart-use-pattern-matching/SKILL.md)**: 规范使用 Dart 3.x 模式匹配、解构与 Sealed 类特性。
-    *   **[dart-add-unit-test](./skills/development/dart-add-unit-test/SKILL.md)** / **[dart-generate-test-mocks](./skills/development/dart-generate-test-mocks/SKILL.md)**: 单元测试用例设计与 build_runner Mock 伪造标准。
-    *   *涵盖了 cli-app 命令行开发、coverage 覆盖率、checks 断言包迁移、package-conflicts 包冲突解决等官方规范。*
+### 🎨 界面设计与动效 (UI & Motion)
+*   **[taste-skill](./skills/third-party/taste-skill/SKILL.md)**: 拒绝平庸前端页面的视觉指南，包括留白比例、微排版与心理感知模型。
+*   **[brutalist-skill](./skills/third-party/brutalist-skill/SKILL.md)**: 粗犷主义设计与强对比排版开发指南。
+*   **[minimalist-skill](./skills/third-party/minimalist-skill/SKILL.md)**: 极简主义设计、克制的微交互及呼吸留白。
+*   **[gpt-tasteskill](./skills/third-party/gpt-tasteskill/SKILL.md)**: AIDA 高效版式、无缝 Bento 网格与 GSAP 滚动动效。
+*   **[soft-skill](./skills/third-party/soft-skill/SKILL.md)**: 柔和极光渐变与毛玻璃拟态（Glassmorphism）色盘规范。
+*   **[redesign-skill](./skills/third-party/redesign-skill/SKILL.md)**: 既有项目重构视觉迭代开发标准。
+*   **[stitch-skill](./skills/third-party/stitch-skill/SKILL.md)**: 通用流式多组件卡片协作架构。
+*   **[brandkit](./skills/third-party/brandkit/SKILL.md)**: 核心品牌色盘设计令牌（Tokens）管理。
+
+### 🧪 自动化测试与质量保障 (Testing & QA)
+*   **[webapp-testing](./skills/third-party/webapp-testing/SKILL.md)**: 现代 Web E2E 高保真回归测试编写规范。
+*   **[playwright-skill](./skills/third-party/playwright-skill/SKILL.md)**: Playwright 高级用例生成与多浏览器自动化执行。
+*   **[android_ui_verification](./skills/third-party/android_ui_verification/SKILL.md)**: Android 模拟器 ADB 图形定位比对及完整性校验。
+
+### 💻 核心语言与应用框架 (Development)
+*   **[image-to-code-skill](./skills/third-party/image-to-code-skill/SKILL.md)**: 截图自动翻译高保真响应式页面的转化法则。
+*   **[react-patterns](./skills/third-party/react-patterns/SKILL.md)**: React 解耦 Hooks 及复杂状态机编写规范。
+*   **[nextjs-best-practices](./skills/third-party/nextjs-best-practices/SKILL.md)**: Next.js App Router 静态生成及服务器组件性能管理。
+*   **Official Flutter 官方团队最佳实践包 (10 个技能)**: 包含 [flutter-apply-architecture-best-practices](./skills/third-party/flutter-apply-architecture-best-practices/SKILL.md) (分层架构设计)、[responsive-layout](./skills/third-party/flutter-build-responsive-layout/SKILL.md) (响应式适配)、集成与 Widget 单元测试、本地化 localization 等。
+*   **Official Dart 官方团队最佳实践包 (9 个技能)**: 包含静态检查 [dart-run-static-analysis](./skills/third-party/dart-run-static-analysis/SKILL.md)、[pattern-matching](./skills/third-party/dart-use-pattern-matching/SKILL.md) (Dart 3 模式匹配解构) 等。
 
 ---
 
 ## 🚀 如何安装与使用
 
-### 第一步：克隆仓库
-克隆本项目至你的本地工作目录：
-```bash
-git clone https://github.com/jiangshan-5/PersonSkills.git
-```
-
-### 第二步：导入到 Agent 的配置目录
-Agent 会在它的全局配置文件夹中扫描所有的 `SKILL.md` 文件。你可以直接将你需要的技能子文件夹复制到 Agent 的全局 `skills` 目录下：
+Agent 会在它的全局配置文件夹中扫描所有的 `SKILL.md` 文件。您可以直接将您需要的技能子文件夹复制到 Agent 的全局 `skills` 目录下：
 
 *   **Antigravity / Gemini IDE 用户**:
     *   **Windows 路径**: `C:\Users\<你的用户名>\.gemini\config\skills\`
     *   **MacOS / Linux 路径**: `~/.gemini/config/skills/`
 
-**Windows 示例命令**（复制 `taste-skill` 到配置目录）：
+**Windows 示例命令**（复制 `novel-reader-integration` 自建技能到全局目录）：
 ```powershell
-Copy-Item -Recurse -Force .\skills\ui-design\taste-skill C:\Users\$env:USERNAME\.gemini\config\skills\
+Copy-Item -Recurse -Force .\skills\my-skills\novel-reader-integration C:\Users\$env:USERNAME\.gemini\config\skills\
 ```
-
-### 第三步：在提示词中唤醒它
-当你在与 AI Pair Programming 时，可以在需求中明确指定要使用的技能，例如：
-> “使用 `design-taste-frontend` 的视觉规范，帮我重新设计并编写这个 Landing Page...”
-
-或者
-> “请调用 `webapp-testing` 写一个 E2E 测试脚本，覆盖用户登录与加入书架功能...”
-
-Agent 将会自动加载并读取对应的 `SKILL.md`，提供符合顶尖水准的代码交付！
