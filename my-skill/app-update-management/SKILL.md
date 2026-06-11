@@ -40,6 +40,13 @@ Using the admin JWT credentials, trigger the `/publish` POST endpoint (or use th
 * `changelog`: Highlight user-facing enhancements.
 * `force_update`: Set to `True` only if breaking changes require blocking older clients.
 
+### Step 5: Verify the Release Server-Side
+After rebuilding and publishing, run these checks to ensure clients can discover the update:
+1. **Query API Version**: Query the version endpoint (e.g. `/api/v1/system/version`) and confirm it returns the new `latest_version` and `version_code` matching your release.
+2. **Check Router Config**: Verify that `app/routers/system.py` contains the updated `DEFAULT_VERSION_INFO`.
+3. **Rebuild Container**: Ensure the docker container is rebuilt (`docker compose up --build -d web`) to load the updated router config.
+4. **Test APK Serving**: Make a GET request (with `stream=True` to save bandwidth) to `/api/v1/system/download/app-release.apk` to ensure the endpoint returns `200` with the correct `Content-Length`.
+
 ---
 
 ## 🛡️ Anti-Caching Proxy Rules (Nginx)
@@ -64,7 +71,32 @@ location ~* \.(apk|ipa)$ {
 * **A1: Missing Rebuild**: The developer changed `pubspec.yaml` but forgot to run `flutter build apk` before uploading the file.
 * **A2: Debug Priority Leak**: The server setting `DEBUG` was set to `True` on the host, causing it to serve old development builds from the local workspace folder instead of the static directory.
 
-### Verification Script
+### Q: Why is the real device not detecting the new version?
+* **A1: Server Router Unpatched**: The server's `app/routers/system.py` has not been updated. The database auto-upgrades the version info based on the hardcoded `DEFAULT_VERSION_INFO` in `system.py`. If this is not updated, the DB config stays on the old version.
+* **A2: Container Rebuild Omitted**: The local files were uploaded but the server containers were not rebuilt. Run `docker compose up --build -d web` to apply the updates.
+* **A3: Cache / CDN Cache**: Proxies or CDN are caching the `/version` response. Ensure cache headers are `no-cache`.
+
+### Verification Scripts
+
+#### 1. Quick API Status Check
+Ensure the returned version and APK downloads are healthy:
+```python
+import requests
+
+api_url = "http://<server-ip>:<port>/api/v1/system/version"
+apk_url = "http://<server-ip>:<port>/api/v1/system/download/app-release.apk"
+
+# Check version json
+version_info = requests.get(api_url).json()
+print("API Version Info:", version_info)
+
+# Check APK size and status code
+r = requests.get(apk_url, stream=True)
+print("APK Status Code:", r.status_code)
+print("APK File Size (bytes):", r.headers.get("Content-Length"))
+```
+
+#### 2. APK Manifest Version Verification
 Run this local script to extract and check the manifest version currently served by the cloud:
 ```python
 import urllib.request
@@ -77,6 +109,7 @@ output = "downloaded-release.apk"
 urllib.request.urlretrieve(url, output)
 with zipfile.ZipFile(output, 'r') as z:
     manifest_data = z.read('AndroidManifest.xml')
-    print("Version 1.0.12 utf-16 present:", b'1.0.12'.encode('utf-16le') in manifest_data)
+    print("Version 1.0.19 utf-16 present:", b'1.0.19'.encode('utf-16le') in manifest_data)
 os.remove(output)
 ```
+
